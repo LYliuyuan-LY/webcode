@@ -104,5 +104,5 @@ theme: fluid
 deploy:
   type: 'git'
   # repo: https://{$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}git@github.com:LYliuyuan-LY/weblog.git
-  repo: git@github.com:LYliuyuan-LY/weblog.git
-  branch: fenzhi1
+  repo: git@github.com:LYliuyuan-LY/yuanblog.git
+  branch: main
