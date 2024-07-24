@@ -13,8 +13,8 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://lyliuyuan-ly.github.io/yuanblog/
-root: /yuanblog/
+url: https://lyliuyuan-ly.github.io/webcode/
+root: /webcode/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -103,8 +103,8 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repository:
-      github: https://github.com/LYliuyuan-LY/yuanblog.git
+  # repository:
+  #   github: https://github.com/LYliuyuan-LY/yuanblog.git
   # repo: https://{${$ACTION_TOKEN}@}@github.com:LYliuyuan-LY/yuanblog.git
-  # repo: git@github.com:LYliuyuan-LY/yuanblog.git
-  branch: master
+  repo: git@github.com:LYliuyuan-LY/webcode.git
+  branch: fenzhi2
