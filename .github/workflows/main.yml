@@ -1,0 +1,71 @@
+name: 部署文件
+
+on:
+  push:
+    branches: [main, master] # 当监测 main,master 的 push
+    paths: # 监测所有 source 目录下的文件变动，所有 yml,json 后缀文件的变动。
+      - '*.json'
+      - '**.yml'
+      - '**/source/**'
+
+jobs:
+  blog: # 任务名称
+    timeout-minutes: 30 # 设置 30 分钟超时
+    runs-on: ubuntu-latest # 指定最新 ubuntu 系统
+    steps:
+      - uses: actions/checkout@v2 # 拉取仓库代码
+      
+      - uses: actions/setup-node@v2 # 设置 node.js 环境
+        with:
+          node-version: '20.X'
+          
+      - name: Global Config全局设置
+        env:
+          ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          mkdir -p ~/.ssh/
+          echo "$ACTIONS_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          git config --global user.email "1175468238@qq.com"
+          git config --global user.name "LYliuyuan-LY"
+
+
+      - name: Init Node.js # 安装源代码所需插件
+        run: |
+          npm install
+          echo "init node successful"
+      - name: Install Hexo-cli # 安装 Hexo
+        run: |
+          npm install -g hexo-cli --save
+          echo "install hexo successful"
+          
+      - name: Cache NPM dependencies缓存依赖
+        uses: actions/cache@v2
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          # path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      # 查看路径 : /home/runner/work/blog/blog
+      # - name: Look Path
+      #   run: pwd
+      # 查看文件
+      - name: Look Dir List
+        run: tree -L 3 -a
+      # 第一次或者依赖发生变化的时候执行 Install Dependencies，其它构建的时候不需要这一步
+      - name: Install Dependencies
+        run: npm install
+      - name: Look Dir List
+        run: tree -L 3 -a
+      - name: Clean
+        run: npm run clean
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        run: npm run deploy
+      - name: Get the output
+        run: |
+          echo "${{ steps.deploy.outputs.notify }}"
