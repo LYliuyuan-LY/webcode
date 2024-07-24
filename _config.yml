@@ -105,6 +105,6 @@ deploy:
   type: 'git'
   # repository:
   #github: https://github.com/LYliuyuan-LY/yuanblog.git
-  repo: https://{{$ACTION_TOKEN}}@github.com:LYliuyuan-LY/webcode.git
+  repo: https://{{ $secrets.ACTION_TOKEN }}github.com/LYliuyuan-LY/webcode.git
   #repo: git@github.com:LYliuyuan-LY/webcode.git
   branch: fenzhi2
