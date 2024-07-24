@@ -33,6 +33,7 @@ jobs:
           git config --global user.email "secsilm@outlook.com"
       - name: Install dependencies 安装依赖
         run: |
+          --chmod=(+|-)x
           npm i -g hexo-cli
           npm ci
           cd themes/tranquilpeak/
