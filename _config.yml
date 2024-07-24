@@ -104,7 +104,7 @@ theme: fluid
 deploy:
   type: 'git'
   repository:
-      github: https://{$ACTION_TOKEN}@github.com:LYliuyuan-LY/yuanblog.git
+      github: https://{$ACTION_TOKEN}@github.com/LYliuyuan-LY/yuanblog.git
   # repo: https://{$}@github.com:LYliuyuan-LY/yuanblog.git
   # repo: git@github.com:LYliuyuan-LY/yuanblog.git
   branch: master
