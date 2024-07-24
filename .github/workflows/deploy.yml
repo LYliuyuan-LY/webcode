@@ -39,10 +39,22 @@ jobs:
           hexo clean
           hexo g
           echo "build blog successful"
-      - name: Deploy DoubleAm's Blog # 设置 git 信息并推送静态博客文件
+       - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY  }}
+          user_name: 'LYliuyuan-LY'
+          user_email: '1175468238@qq.com'
+          
+          commit_message: ${{ github.event.head_commit.message }}
+          full_commit_message: ${{ github.event.head_commit.message }}
+          github_token: ${{ secrets.ACTION_TOKEN }}
+          
+          publish_dir: ./public
+          allow_empty_commit: true # 允许空提交
+        
+        - name: Get the output
         run: |
-          git config --global user.name "LYliuyuan-LY"
-          git config --global user.email "1175468238@qq.com"
-          hexo deploy
-
+          echo "${{ steps.deploy.outputs.notify }}"
+          
       - run: echo "Deploy Successful!"
