@@ -103,6 +103,6 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: https://{$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}@github.com:LYliuyuan-LY/yuanblog.git
-  # repo: git@github.com:LYliuyuan-LY/yuanblog.git
+  # repo: https://{$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}@github.com:LYliuyuan-LY/yuanblog.git
+  repo: git@github.com:LYliuyuan-LY/yuanblog.git
   branch: main
