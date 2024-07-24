@@ -3,7 +3,7 @@ name: Deploy hexo blog
 on:
   push:
     branches:
-    - master
+    - master,main
 
 jobs:
   build:
@@ -33,10 +33,9 @@ jobs:
           git config --global user.email "secsilm@outlook.com"
       - name: Install dependencies 安装依赖
         run: |
-          --chmod=(+|-)x
           npm i -g hexo-cli
           npm ci
-          cd themes/tranquilpeak/
+          cd themes/
           npm ci
           npm run prod
       - name: Deploy hexo 部署hexo
