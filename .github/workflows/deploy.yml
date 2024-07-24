@@ -41,6 +41,8 @@ jobs:
           echo "build blog successful"
       - name: Deploy DoubleAm's Blog # 设置 git 信息并推送静态博客文件
         run: |
+          git config --global --unset http.proxy 
+          git config --global --unset https.proxy
           git config --global user.name "LYliuyuan-LY"
           git config --global user.email "1175468238@qq.com"
           hexo deploy
