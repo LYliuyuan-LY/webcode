@@ -53,6 +53,8 @@ jobs:
         git init
         git config --global user.name 'LYliuyuan-LY'
         git config --global user.email '1175468238@qq.com'
+        git remote set-url origin <https://github.com/LYliuyuan-LY/yuanblog.git>
+        git config --list
         git add .
         git commit -m "${{ github.event.head_commit.message }} $(date +"%Z %Y-%m-%d %A %H:%M:%S") Updated By Github Actions"
         git push --force --quiet "https://github.com/LYliuyuan-LY/yuanblog.git" master:main
